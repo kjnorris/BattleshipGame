@@ -13,7 +13,7 @@ public class LightCruiser extends Ship {
 	@Override
 	public String getShipType() {
 		// TODO Auto-generated method stub
-		return "lightcruiser";
+		return "light cruiser";
 	}
 
 }

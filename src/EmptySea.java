@@ -1,6 +1,7 @@
 
 public class EmptySea extends Ship {
 	public EmptySea()  {
+		this.setLength(1);
 		boolean[] myHit = new boolean[1];
 		myHit[0] = false;
 		this.setHit(myHit);
@@ -22,7 +23,7 @@ public class EmptySea extends Ship {
 	@Override
 	public String toString() {
 		if (this.getHit()[0]) {
-			return "*";
+			return "-";
 		} else {
 			return ".";
 		}

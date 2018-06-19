@@ -136,35 +136,36 @@ public abstract class Ship {
 	}
 
 	boolean shootAt(int row, int column) {
-		if (this.isSunk()) {
-			return false;
-		} else {
+		if (!this.isSunk()) {
 			boolean[] hit = this.getHit();
-			if (this.isHorizontal()) {
+			if (this.isHorizontal() && (row == this.getBowRow())) {
 				hit[column - this.getBowColumn()] = true;
-			} else {
+				this.setHit(hit);
+				return true;
+			} else if(column == this.getBowColumn()) {
 				hit[row - this.getBowRow()] = true;
+				this.setHit(hit);
+				return true;
 			}
-			this.setHit(hit);
-			return true;
 		}
+		return false;
 	}
 	
 	boolean isSunk() {
-		boolean[] hit = this.getHit();
-		for (int i = 0; i < hit.length; i++) {
-			if (hit[i] == false) {
-				return false;
+		boolean sunkShip = true;
+		for (int i = 0; i < this.getHit().length; i++) {
+			if (this.getHit()[i] == false) {
+				sunkShip = false;
 			}
 		}
-		return true;
+		return sunkShip;
 	}
 	
 	public String toString() {
 		if (this.isSunk()) {
-			return "S";
-		} else {
 			return "x";
+		} else {
+			return "S";
 		}
 	}
 	

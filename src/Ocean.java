@@ -121,7 +121,7 @@ public class Ocean {
 		}
 		
 		// Place four submarine
-		for (int i = 1; i <= 3; i ++) {
+		for (int i = 1; i <= 4; i ++) {
 			myShip = new Submarine();
 			this.placeAShip(myShip);
 		}
@@ -134,13 +134,17 @@ public class Ocean {
 		
 		if (this.getShipArray()[row][column].getShipType() == "empty") {
 			this.getShipArray()[row][column].shootAt(row, column);
+			System.out.println("Miss!");
 			return false;
 		} else {
-			this.hitCount++;
+			// this.hitCount++;
 			boolean hitShip = this.getShipArray()[row][column].shootAt(row, column);
 			if (!sunkYet && this.getShipArray()[row][column].isSunk()) {
 				this.shipsSunk++;
-				System.out.format("You sank my %s! %n%n", this.getShipArray()[row][column].getShipType());
+				System.out.format("You sank my %s! %n", this.getShipArray()[row][column].getShipType());
+			} else {
+				this.hitCount++;
+				System.out.println("Hit!");
 			}
 			return hitShip;
 		}
